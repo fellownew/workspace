@@ -1,4 +1,4 @@
-package day14.inheritance.hr;
+package day15.inheritance.overriding.hr;
 
 public class Manager extends Employee {
 	private String DepartmentName;

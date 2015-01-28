@@ -1,4 +1,4 @@
-package day14.inheritance.hr;
+package day15.inheritance.overriding.hr;
 
 public class TestEmployee {
 	public static void main(String[] args) {
@@ -17,5 +17,8 @@ public class TestEmployee {
 		
 		Secretary s1 = new Secretary(4, "³ªºñ¼­", 5000000, "±èÃ¶¼ö");
 		System.out.println(s1.toString());
+		
+		
+		
 	}
 }
