@@ -20,14 +20,34 @@ public class PolymorphismTest {
 		pt1.polymorphicArgument1(new Dog());
 		pt1.polymorphicArgument1(new Koala());
 		pt1.polymorphicArgument1(new Penguin());
-
+		System.out.println("===================");
+		pt1.instanceofTest(new Dog());
+		pt1.instanceofTest(new Lion());
+		Animal an1 = new Dog();
+		pt1.instanceofTest(an1);
+		Animal an2 = new Animal();
+		pt1.instanceofTest(an2);
 	}
 	//polymorphicArgument1 : 다형성을 매개변수에 적용한것, 매개변수를 부모타입으로 정의하면 그 하위의 모든 객체를 다 받을 수 있는 것.
 	
 	public void polymorphicArgument1(Animal an){
 	an.eat();
 	}
-	
+	public void instanceofTest(Animal an){
+		
+		
+		
+		if(an instanceof Dog){
+			((Dog) an).bark();
+		}else if(an instanceof Lion){
+			((Lion) an).hunt();
+		}else if(an instanceof Animal){
+			an.eat();
+		}else{
+			System.out.println("아무것도 안합니다.");
+		}
+		
+	}
 	public void basicTest(){
 		//다형성 : 부모타입 변수 = 자식타입객체
 		Animal a1 = new Animal();
