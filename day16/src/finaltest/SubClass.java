@@ -3,7 +3,7 @@ package finaltest;
 public class SubClass //extends SuperClass{ final class는 상속이 안됨.
 {
 	
-// final method는 Overriding 불가.
+// finalmethod는 Overriding 불가.
 //	@Override
 //	public void method(){
 //		System.out.println("SubClass.method");
