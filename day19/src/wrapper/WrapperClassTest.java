@@ -50,7 +50,5 @@ public class WrapperClassTest {
 		System.out.println(s1+"  "+s2+"  "+s3);
 		System.out.println(i+"  "+b+"  "+d);
 //		int i2 = Integer.parseInt(s2); //컴파일 오류는 안나나 실제로 값 변환이 불가하기때문에 실행 오류가 발생함.
-		
 	}
-
 }
