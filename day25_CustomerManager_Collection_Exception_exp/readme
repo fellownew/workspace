@@ -1,0 +1,15 @@
+CustomerService
+
+생성자 * 2
+
+registerCustomer()
+printCustomerList()
+findCustomerById()
+findCustomerByName()
+findCustomerByMileageRange()
+updateCustomerInfo()
+removeCustomerById()
+
+각각의 메소드들에서 발생할 수 있는 예외를 찾아보세요.
+kr.or.kosta.exception 패키지내에 예외 클래스를 작성.
+각 메소드에서 예외 발생 처리를 하세요. 
