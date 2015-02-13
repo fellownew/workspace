@@ -49,15 +49,17 @@ public static void main(String[] args) {
 		//byte[]를 이용한 입출력
 		FileInputStream fis=null;	 
 		FileOutputStream fos = null;
-		byte[] b = new byte[1000000];
+		byte[] b = new byte[100000];
 		try {
 			fis = new FileInputStream(srcFile);
 			fos = new FileOutputStream(targetFile);
 			//읽기 및 쓰기
 			int i= fis.read(b);//b에 읽은 byte를 넣어줌. 읽은 byte수를 return. EOF를 읽은 경우 -1 리턴
+			System.out.println(i);
 			while(i!=-1){
 				fos.write(b,0,i);//b에 있는 byte들을 한번에 출력하되 0번index에서 i만큼 한번에 출력(쓰기)
-				i = fis.read(b);	
+				i = fis.read(b);
+				System.out.println(i);
 			}//읽기 및 쓰기 종료
 		}finally{
 			//연결 닫기
