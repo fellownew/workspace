@@ -1,18 +1,21 @@
-package io.stn.member;
+package io.file;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MemberInput {
-	ArrayList<Member> ar = new ArrayList<Member>(); // Membeer 담을 arraylist
-
-	public static void main(String[] args) {
+public class MemberInput implements Serializable{
+	ArrayList<Member> ar = null; // Member 담을 arraylist
+	String basicPath = "C:\\JAVA\\member_list.obj";
+	
+	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
 		MemberInput mi = new MemberInput();
 		try {
 			mi.manageMemberConsole();
@@ -22,15 +25,33 @@ public class MemberInput {
 			e.getStackTrace();
 		}
 	}
-
-	public void manageMemberConsole() throws IOException {
+	public MemberInput(){
+		ObjectInputStream ois = null;
+		try{
+		System.out.println("member_list를 불러옵니다.");
+		ois = new ObjectInputStream(new FileInputStream(basicPath));
+		ar = (ArrayList<Member>) ois.readObject();
+		}catch(Exception e){
+			ar = new ArrayList<Member>();
+		}finally{
+			try {
+				ois.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void manageMemberConsole() throws IOException, ClassNotFoundException {
 		BufferedReader br = null;
+		ObjectOutputStream oos = null;
 		try {
 			// 여러 값을  받기 위한 리더
 			br = new BufferedReader(new InputStreamReader(System.in)); 
 			String menu = "0"; // 단순 기본값 nullpointexception 방지용
 			while (menu != null) {
-				System.out.println("1.등록 2.조회 3.수정 4.삭제. 5.저장 6.종료");
+				System.out.println("1.등록 2.조회 3.수정 4.삭제. 5.저장 6.로드 7.종료");
 				menu = br.readLine();
 				if (menu.equals("1")) {// 값이 1이면 등록 메소드 실행
 					registMember();
@@ -42,7 +63,12 @@ public class MemberInput {
 					removeMember();
 				} else if ((menu.equals("5"))) {//값이 5이면 저장.
 					saveFile();
-				}else if ((menu.equals("6"))) {// 값이 6이면 null값으로 EOF 전달하면서 종료
+				}else if ((menu.equals("6"))) {// 값이 6이면 로드.
+					loadFile();
+				}else if ((menu.equals("7"))) {// 값이 6이면 null값으로 EOF 전달하면서 종료
+					oos = new ObjectOutputStream(new FileOutputStream(basicPath));
+					oos.writeObject(ar);
+//					selectSave();
 					menu = null;
 				}
 			}
@@ -73,7 +99,7 @@ public class MemberInput {
 
 	public void findMember() {
 		if(ar.size()==0){
-			System.out.println("등록된 회원이 없습니다.");//TODO Exception
+			System.out.println("등록된 회원이 없습니다.");
 		}else{
 			for (Member m : ar) {
 				System.out.println(m); // 등록된 멤버 리스트 조회
@@ -83,19 +109,42 @@ public class MemberInput {
 	
 	public void saveFile() throws IOException{
 		BufferedReader fileName = new BufferedReader(new InputStreamReader(System.in));
-		PrintWriter save=null;
+		ObjectOutputStream oos = null;
 		try{
 		System.out.println("저장할 파일명을 적어주세요");
 		String temp = fileName.readLine();
 		String name = "C:\\JAVA\\"+temp+".txt";
-		save = new PrintWriter(name);		
-		for(Member m:ar){
-			save.println(m);
-		}
+		oos = new ObjectOutputStream(new FileOutputStream(name));
+		oos.writeObject(ar);
 		System.out.println(name+"경로에 정상적으로 저장되었습니다.");
 		}finally{
-		if(save!=null){
-			save.close();
+			if(oos!=null){
+				oos.close();
+			}
+		}
+	}
+	
+	public void selectSave() throws IOException{
+		BufferedReader fileName = new BufferedReader(new InputStreamReader(System.in));
+		ObjectOutputStream oos = null;
+		try{
+		System.out.println("member_list에 저장하시겠습니까?(y/n)");
+		String temp = fileName.readLine();
+		while(temp.equals("y")||temp.equals("n")){
+			if(temp.equals("y")){
+				oos = new ObjectOutputStream(new FileOutputStream(basicPath));
+				oos.writeObject(ar);
+				System.out.println("정상적으로 저장되었습니다.");
+			}else if(temp.equals("n")){
+				System.out.println("저장하지 않고 종료합니다.");
+			}else{
+				System.out.println("y/n 중에 써주세요");
+				temp = fileName.readLine();
+			}
+		}
+		}finally{
+			if(oos!=null){
+				oos.close();
 			}
 		}
 	}
@@ -131,6 +180,21 @@ public class MemberInput {
 			}
 		}
 	}
-	
+	public void loadFile() throws IOException, ClassNotFoundException{
+		BufferedReader fileName = new BufferedReader(new InputStreamReader(System.in));
+		ObjectInputStream ois = null;
+		try{
+		System.out.println("불러올 파일명을 적어주세요");
+		String temp = fileName.readLine();
+		String name = "C:\\JAVA\\"+temp+".txt";
+		ois = new ObjectInputStream(new FileInputStream(name));
+		ar = (ArrayList<Member>) ois.readObject();
+		System.out.println(name+"경로의 파일을 정상적으로 불러왔습니다.");
+		}finally{
+			if(ois!=null){
+				ois.close();
+			}
+		}
+	}
 	
 }//클래스 끝
