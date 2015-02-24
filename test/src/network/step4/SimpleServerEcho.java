@@ -1,57 +1,59 @@
-package network.step1;
+package network.step4;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import network.util.NetworkUtil;
 
-//서버에 클라이언트가 접속하면 클라이언트로부터 문자열을 받아서 출력.
-public class SimpleServer {
+public class SimpleServerEcho {
 	ServerSocket serverSocket = null;
 	Socket socket = null;
-	BufferedReader br = null; // 클라이언트로부터 받을 문자열
+	BufferedReader br = null;
+	PrintWriter pw = null;
+	ArrayList<Socket> als = null;
 
 	public static void main(String[] args) {
-		SimpleServer ss = new SimpleServer();
-		ss.receiveString();
-	}//메인 종료
+		SimpleServerEcho sse = new SimpleServerEcho();
+		sse.serverEcho();
+	}
 
-	public void receiveString() {
-		// 서버소켓 생성
+	public void serverEcho() {
 		try {
 			serverSocket = new ServerSocket(5000);
 		} catch (IOException e) {
-			// 5000번 포트가 사용중일경우 충돌로 인해 예외 발생.
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return;
-		}// 서버소켓 구문 종료
+		}
 		while (true) {
 			try {
 				System.out.println("-----Client의 접속을 기다립니다.-----");
 				// 클라이언트 연결을 기다리다 연결되면 socket을 리턴.
 				socket = serverSocket.accept();
 				br = new BufferedReader(new InputStreamReader(socket.getInputStream())); // 문자열 리더
+				pw =  new PrintWriter(socket.getOutputStream(),true);
 				String str = br.readLine();
 				while (str != null) {
-					System.out.println(str);
+					pw.println("server return	"+str);
 					str = br.readLine();
-				}
+				}	
+			System.out.println("전송 완료");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally {
-
 				try {
-					NetworkUtil.close(br, null, socket);
+					NetworkUtil.close(br, pw, socket);//입력에 대한 소켓 닫음
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-			}//finally 종료
+			}
 		}// while 종료
-	}// recieveString 종료
-}// 클래스 종료
+	}//serverEcho 종료
+}//class종료

@@ -1,9 +1,10 @@
 package network.step1;
 
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
+
+import network.util.NetworkUtil;
 
 //서버로 문자열을 보냄
 public class SimpleClient {
@@ -29,12 +30,7 @@ public class SimpleClient {
 			}
 			
 		}finally{
-			if(pw!=null){
-				pw.close();
-			}
-			if(socket!=null){
-				socket.close();
-			}
+			NetworkUtil.close(null, pw, socket);
 		}
 	}
 }

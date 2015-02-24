@@ -51,7 +51,7 @@ public class MemberInput implements Serializable{
 			br = new BufferedReader(new InputStreamReader(System.in)); 
 			String menu = "0"; // 단순 기본값 nullpointexception 방지용
 			while (menu != null) {
-				System.out.println("1.등록 2.조회 3.수정 4.삭제. 5.저장 6.로드 7.종료");
+				System.out.println("1.등록 2.조회 3.수정 4.삭제. 5.저장 6.불러오기 7.종료");
 				menu = br.readLine();
 				if (menu.equals("1")) {// 값이 1이면 등록 메소드 실행
 					registMember();
@@ -63,7 +63,7 @@ public class MemberInput implements Serializable{
 					removeMember();
 				} else if ((menu.equals("5"))) {//값이 5이면 저장.
 					saveFile();
-				}else if ((menu.equals("6"))) {// 값이 6이면 로드.
+				}else if ((menu.equals("6"))) {// 값이 6이면 불러오기.
 					loadFile();
 				}else if ((menu.equals("7"))) {// 값이 6이면 null값으로 EOF 전달하면서 종료
 					oos = new ObjectOutputStream(new FileOutputStream(basicPath));

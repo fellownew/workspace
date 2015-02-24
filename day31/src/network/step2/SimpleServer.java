@@ -1,4 +1,4 @@
-package network.step1;
+package network.step2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class SimpleServer {
 	public static void main(String[] args) {
 		SimpleServer ss = new SimpleServer();
 		ss.receiveString();
-	}//메인 종료
+	}
 
 	public void receiveString() {
 		// 서버소켓 생성
@@ -43,15 +43,14 @@ public class SimpleServer {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally {
-
+				
 				try {
 					NetworkUtil.close(br, null, socket);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-			}//finally 종료
+			}
 		}// while 종료
 	}// recieveString 종료
 }// 클래스 종료

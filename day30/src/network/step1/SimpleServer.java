@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import network.util.NetworkUtil;
+
 //서버에 클라이언트가 접속하면 클라이언트로부터 문자열을 받아서 출력.
 public class SimpleServer {
 	ServerSocket serverSocket = null;
@@ -41,24 +43,13 @@ public class SimpleServer {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally {
-
-				if (br != null) {
-					try {
-						br.close();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}// br.close
-
-				if (socket != null) {
-					try {
-						socket.close();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}// socket.close();
+				
+				try {
+					NetworkUtil.close(br, null, socket);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}// while 종료
 	}// recieveString 종료
