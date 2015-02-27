@@ -1,4 +1,4 @@
-package network.util;
+package consoleChat.util;
 
 import java.io.IOException;
 import java.io.InputStream;
