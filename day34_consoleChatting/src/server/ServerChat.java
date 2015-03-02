@@ -31,7 +31,7 @@ public class ServerChat {
 				socket = serverSocket.accept();
 				//입출력을 위한 Thread 호출
 				ServerThread st = new ServerThread(socket);
-				SocketList.addList(st);
+				SocketList.addList(st); //
 				Thread t = new Thread(st);
 				t.start();
 				
