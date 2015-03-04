@@ -73,7 +73,6 @@ insert into employee values (005,'장길산','jks@kosta.co.kr','부장',4500000,'2010
 insert into employee values (006,'이순신','lss@kosta.co.kr','실장',5000000,'20090301',700);
 insert into employee values (008,'홍길동','hkd@kosta.co.kr','대리',3000000,'20100101',200);
 
-
 select *from employee order by employee_id
 update employee set employee_id='001' where employee_id='007'
 
