@@ -1,36 +1,30 @@
 package stockmarket.server;
-
+/**
+ * ÁÖ½Ä °´Ã¼
+ *
+ */
 public class Stock {
-	private String name,type,price;
+	private String name,type;
+	private int price;
 
-	public Stock(String name, String type, String price) {
+	public Stock(String name, String type, int price) {
 		this.name = name;
 		this.type = type;
 		this.price = price;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Stock [name=" + name + ", type=" + type + ", price=" + price
+				+ "]";
 	}
 
 	@Override
@@ -38,7 +32,7 @@ public class Stock {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((price == null) ? 0 : price.hashCode());
+		result = prime * result + price;
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
@@ -57,10 +51,7 @@ public class Stock {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (price == null) {
-			if (other.price != null)
-				return false;
-		} else if (!price.equals(other.price))
+		if (price != other.price)
 			return false;
 		if (type == null) {
 			if (other.type != null)
@@ -68,12 +59,6 @@ public class Stock {
 		} else if (!type.equals(other.type))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Stock [name=" + name + ", type=" + type + ", price=" + price
-				+ "]";
 	}
 	
 }
