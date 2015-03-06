@@ -34,6 +34,8 @@ public class BaseballServerThread implements Runnable {
 			pw.println("이름을 입력하세요");
 			name = br.readLine();
 			while (true) {//게임 계속 함.
+				
+				
 				pw.println(rCount+"Round Game start"); //시작을 알림
 				count = 0;
 				win = false;
