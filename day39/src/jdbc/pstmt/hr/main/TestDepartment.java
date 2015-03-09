@@ -6,7 +6,7 @@ import jdbc.pstmt.hr.vo.Department;
 public class TestDepartment {
 	public static void main(String[] args) throws Exception{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		DepartmentDAO dao = new DepartmentDAO();
+		DepartmentDAO dao = DepartmentDAO.getInstance();
 //		dao.insertDepartment(new Department(160,"운영2부","강원"));
 //		dao.updateDepartment(new Department(160,"운영3부","강원"));
 //		
