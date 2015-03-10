@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
+import stockmarket.vo.Company;
+import stockmarket.vo.Investor;
+import stockmarket.vo.Stock;
+
 public class Data implements Serializable{
 	private static ArrayList<Stock> stockList;
 	private static ArrayList<Company> companyList;
@@ -28,6 +32,4 @@ public class Data implements Serializable{
 		stock.setPrice(stock.getPrice()+changePrice);
 		}
 	}
-	
-	
 }

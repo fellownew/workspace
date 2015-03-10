@@ -1,4 +1,4 @@
-package stockmarket.server;
+package stockmarket.vo;
 
 import java.util.Hashtable;
 

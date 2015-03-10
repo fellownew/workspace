@@ -1,4 +1,4 @@
-package stockmarket.server;
+package stockmarket.vo;
 
 public interface Isuue {
 public void event();

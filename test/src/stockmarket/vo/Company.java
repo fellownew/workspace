@@ -1,4 +1,6 @@
-package stockmarket.server;
+package stockmarket.vo;
+
+
 /**
  * È¸»ç °´Ã¼
  *

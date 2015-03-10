@@ -3,6 +3,8 @@ package stockmarket.server;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import stockmarket.vo.Company;
 /**
  * 시장 관리자용, 기업 생성 가능.
  * 관리자로부터 각종 명령을 받음.
