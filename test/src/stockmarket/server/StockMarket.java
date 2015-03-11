@@ -12,7 +12,7 @@ import stockmarket.vo.Company;
 public class StockMarket {
 	public static void main(String[] args) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		new Thread(new StockMarketServer()).start();
+		new Thread(new StockMarketServerThread()).start();
 		System.out.println("1.기업생성, 2.종료");
 		String select;
 		String str;

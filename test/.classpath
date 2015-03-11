@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="libs/komoran-2.4-e.jar"/>
 	<classpathentry kind="lib" path="libs/shineware-common-2.0.jar"/>
 	<classpathentry kind="lib" path="libs/shineware-ds-1.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/dbcp"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

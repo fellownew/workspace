@@ -10,9 +10,10 @@ import java.util.ArrayList;
 
 public class Rank {
 	static ArrayList<User> userList = new ArrayList<User>();
-	
+	BaseballDAO dao = BaseballDAO.getInstance();
 	public static void addRank(User user){
 		userList.add(user);
+		
 	}
 	public static void saveRank(){
 		try {
@@ -22,6 +23,7 @@ public class Rank {
 				pw.flush();
 			}
 			pw.close();
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

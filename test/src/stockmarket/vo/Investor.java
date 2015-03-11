@@ -1,8 +1,9 @@
 package stockmarket.vo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Investor {
+public class Investor implements Serializable{
 	String id,password,name;
 	ArrayList<HaveStock> haveStock;
 	public Investor(String id, String password, String name,ArrayList<HaveStock> haveStock) {

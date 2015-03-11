@@ -1,37 +1,22 @@
 package stockmarket.vo;
 
-import java.util.Hashtable;
-
-
 public class HaveStock {
-	Hashtable<Stock, Integer> haveStock;
-
-	public HaveStock(Hashtable<Stock, Integer> haveStock) {
-		this.haveStock = haveStock;
+	private Stock stock;
+	private int number;
+	
+	public HaveStock(Stock stock, int number) {
+		this.stock = stock;
+		this.number = number;
 	}
-
-	public Hashtable<Stock, Integer> getHaveStock() {
-		return haveStock;
-	}
-
-	public void setHaveStock(Hashtable<Stock, Integer> haveStock) {
-		this.haveStock = haveStock;
-	}
-
-	@Override
-	public String toString() {
-		return "HaveStock [haveStock=" + haveStock + "]";
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((haveStock == null) ? 0 : haveStock.hashCode());
+		result = prime * result + number;
+		result = prime * result + ((stock == null) ? 0 : stock.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -41,13 +26,30 @@ public class HaveStock {
 		if (getClass() != obj.getClass())
 			return false;
 		HaveStock other = (HaveStock) obj;
-		if (haveStock == null) {
-			if (other.haveStock != null)
+		if (number != other.number)
+			return false;
+		if (stock == null) {
+			if (other.stock != null)
 				return false;
-		} else if (!haveStock.equals(other.haveStock))
+		} else if (!stock.equals(other.stock))
 			return false;
 		return true;
 	}
+	public Stock getStock() {
+		return stock;
+	}
+	public void setStock(Stock stock) {
+		this.stock = stock;
+	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
 	
-	
+	@Override
+	public String toString() {
+		return "HaveStock [stock=" + stock + ", number=" + number + "]";
+	}
 }
