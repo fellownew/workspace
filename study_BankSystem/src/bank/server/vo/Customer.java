@@ -11,13 +11,13 @@ public class Customer {
 	private boolean sex;
 	private String phoneNumber,adress;
 	public Customer(String customerId, String customerPassword,
-			String customerName, ArrayList<Account> customerAccount,
+			String customerName, Account customerAccount,
 			int creditRating, String job, int age, boolean sex,
 			String phoneNumber, String adress) {
 		this.customerId = customerId;
 		this.customerPassword = customerPassword;
 		this.customerName = customerName;
-		this.customerAccount = customerAccount;
+		this.customerAccount.add(customerAccount);
 		this.creditRating = creditRating;
 		this.job = job;
 		this.age = age;

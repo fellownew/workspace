@@ -1,8 +1,11 @@
 package bank.client;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+
+import bank.util.NetworkUtil;
 
 /**
  * 서버로부터 정보를 받아 사용자에게 표준I/O(모니터)를 통해 출력
@@ -29,7 +32,11 @@ public class ClientThread implements Runnable {
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
-			
+			try {
+				NetworkUtil.close(receive, null, socket);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

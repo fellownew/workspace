@@ -3,37 +3,21 @@ package bank.server.vo;
 public class Account {
 	private String accountId;
 	private long amount;
-	private String type;
+	private Type type;
 	private double interest;
-	public Account(String accountId, long amount, String type, double interest) {
+
+	@Override
+	public String toString() {
+		return "통장번호 : " + accountId + ", 잔액 : " + amount + type + ", 이자율 : " + interest + "]";
+	}
+
+	public Account(String accountId, long amount, Type type) {
 		this.accountId = accountId;
 		this.amount = amount;
 		this.type = type;
-		this.interest = interest;
+		this.interest = type.getInterest();
 	}
-	public String getAccountId() {
-		return accountId;
-	}
-	public long getAmount() {
-		return amount;
-	}
-	public void setAmount(long amount) {
-		this.amount = amount;
-	}
-	public String getType() {
-		return type;
-	}
-	public double getInterest() {
-		return interest;
-	}
-	public void setInterest(double interest) {
-		this.interest = interest;
-	}
-	@Override
-	public String toString() {
-		return "통장번호 : " + accountId + ", 잔액 : " + amount
-				+ ", 종류 : " + type + ", 이자율 : " + interest + "]";
-	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -47,6 +31,7 @@ public class Account {
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -73,5 +58,40 @@ public class Account {
 			return false;
 		return true;
 	}
+
+	public String getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
+	}
+
+	public long getAmount() {
+		return amount;
+	}
+
+	public void setAmount(long amount) {
+		this.amount = amount;
+	}
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+	public double getInterest() {
+		return interest;
+	}
+
+	public void setInterest(double interest) {
+		this.interest = interest;
+	}
+
+
+
 	//TODO 입,출금,이자율 변경 메소드 필요
 }

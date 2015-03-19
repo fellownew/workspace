@@ -2,12 +2,13 @@ package bank.server;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 
 /**
- * 메인 메소들 보유
+ * 메인 메소드 보유
  * 관리자 메뉴 실행
- *
+ * 관리자 메뉴 : 1.은행관리, 2.고객관리.
+ * 은행관리 메뉴 : 1. Type-이자율 관리.
+ * 고객관리 메뉴 : 1.조회, 2.고객생성
  */
 public class ServerAdministrator {
 	public static void main(String[] args) {
@@ -15,15 +16,33 @@ public class ServerAdministrator {
 		BufferedReader key = null;
 		boolean flag = true;
 		key = new BufferedReader(new InputStreamReader(System.in));
-		//1.
-		while(flag){
-			
-			
-			
-			
-			
-			
-		}//while end	
+		try{
+			System.out.println("관리자 인증");
+			String confirm = key.readLine();
+			while(confirm.equals("admin")){
+				System.out.println("1. 은행관리, 2.고객관리");
+				String str = key.readLine();
+				if(str.equals("1")){
+					System.out.println("1.상품관리, 2.이자율 관리");
+					str = key.readLine();
+					if(str.equals("1")){
+						//TODO Type 관리						
+					}else if(str.equals("2")){
+						//TODO 이자율 변경
+					}
+					
+				}else if(str.equals("2")){
+					System.out.println("1.조회, 2.고객생성");
+					str = key.readLine();
+					if(str.equals("1")){
+						//TODO 고객관리-조회 메소드 부르기
+					}else if(str.equals("2")){
+						//TODO 고객관리-고객생성 메소드 부르기
+					}
+				}
+			}//while end	
+		}catch(Exception e){
+			e.getStackTrace();
+		}
 	}//main end
-	
 }//class end

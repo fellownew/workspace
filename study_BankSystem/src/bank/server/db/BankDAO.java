@@ -9,4 +9,5 @@ public class BankDAO {
 	private static BankDAO getInstance(){
 		return dao;
 	}
+	
 }
