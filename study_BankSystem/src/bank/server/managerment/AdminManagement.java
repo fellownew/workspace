@@ -1,5 +1,8 @@
 package bank.server.managerment;
 
+import java.util.ArrayList;
+
+import bank.server.vo.Customer;
 import bank.server.vo.Type;
 
 /**
@@ -12,7 +15,8 @@ import bank.server.vo.Type;
  * 고객생성
  */
 public class AdminManagement {
-	
+	AccountManagement accM=AccountManagement.getInstance();
+	CustomerManagement cusM = CustomerManagement.getInstance();
 	public void findInterest(){
 		
 	}
@@ -20,6 +24,12 @@ public class AdminManagement {
 		
 	}
 	public void findCustomer(){
+		ArrayList<Customer> cusList = cusM.findCustomer();
+		if(cusList!=null){
+			for(Customer cus:cusList){
+				//출력
+			}
+		}
 		
 	}
 	public void addCustomer(){

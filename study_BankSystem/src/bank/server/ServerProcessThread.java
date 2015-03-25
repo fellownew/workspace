@@ -120,7 +120,8 @@ public class ServerProcessThread implements Runnable{
 		String customerId = br.readLine();
 		pw.println("비밀번호");
 		String customerPassword = br.readLine();
-		//TODO 삭제 기능.
+		//TODO 아이디 비밀번호 비교
+		cusM.removeCustomer(customerId);//삭제
 	}
 	
 	public void accountManage() throws IOException{

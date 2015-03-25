@@ -8,7 +8,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "통장번호 : " + accountId + ", 잔액 : " + amount + type + ", 이자율 : " + interest + "]";
+		return "통장번호 : " + accountId + ", 잔액 : " + amount + type + ", 이자율 : " + interest;
 	}
 
 	public Account(String accountId, long amount, Type type) {

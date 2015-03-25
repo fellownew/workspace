@@ -18,6 +18,13 @@ public class CustomerManagement {
 			String phoneNumber, String adress){
 		customerList.add(new Customer(customerId,customerPassword,customerName,customerAccount,creditRating,job,age,sex,phoneNumber,adress));
 	}
+	public ArrayList<Customer> findCustomer(){
+		ArrayList<Customer> tempList=null;
+		for(Customer tempCus:customerList){
+			tempList.add(tempCus);
+		}
+		return tempList;
+	}
 	public void removeCustomer(String id){
 		int index;
 		for(index=0;index<customerList.size();index++){

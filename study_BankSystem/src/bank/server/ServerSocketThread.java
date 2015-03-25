@@ -24,10 +24,11 @@ public class ServerSocketThread implements Runnable {
 			try {
 				System.out.println("접속 대기");
 				socket = serverSocket.accept();
+				new Thread(new ServerProcessThread(socket)).start();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			new Thread(new ServerProcessThread(socket)).start();
+			
 		}//accept를 위한 while end
 	}//run end
 }//class end
