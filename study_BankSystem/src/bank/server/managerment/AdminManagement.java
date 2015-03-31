@@ -27,7 +27,7 @@ public class AdminManagement {
 		ArrayList<Customer> cusList = cusM.findCustomer();
 		if(cusList!=null){
 			for(Customer cus:cusList){
-				//Ãâ·Â
+				System.out.println(cus);
 			}
 		}
 		

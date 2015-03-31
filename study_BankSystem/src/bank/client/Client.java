@@ -12,8 +12,8 @@ import java.net.Socket;
 public class Client {
 	public static void main(String[] args) throws Exception{
 		Socket socket = new Socket("127.0.0.1",9000);
-		new Thread(new ClientThread(socket)).start();
 		boolean flag = true;
+		new Thread(new ClientThread(socket)).start();
 		BufferedReader key = new BufferedReader(new InputStreamReader(System.in));
 		PrintWriter send = new PrintWriter(socket.getOutputStream(),true);
 		String str = key.readLine();

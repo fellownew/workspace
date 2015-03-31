@@ -34,4 +34,18 @@ public class CustomerManagement {
 			}
 		}
 	}
+	public String confirmLogin(String customerId,String customerPassword){
+		String confirm =null;
+			for(Customer customer:customerList){
+				if(customer.getCustomerId().equals(customerId)){
+					if(customer.getCustomerPassword().equals(customerPassword)){			
+					}else{
+						confirm = "ID 또는 비밀번호가 틀렸습니다.";
+					}
+				}else{
+					confirm = "ID 또는 비밀번호가 틀렸습니다.";
+				}
+			}
+		return confirm;
+	}
 }

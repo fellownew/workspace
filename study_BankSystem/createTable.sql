@@ -2,10 +2,10 @@ create table customer(
 	customer_id varchar(30) primary key,
 	customer_pwd varchar(30) not null,
 	customer_name varchar(30) not null,
-	credit_rating number(4,2) not null,
+	credit_rating number(4) not null,
 	job varchar(30) not null,
 	age number(3) not null,
-	sex varchar(4) not null,
+	sex varchar(6) not null,
 	phone_Number varchar(30) not null,
 	address varchar(30) not null
 );
@@ -34,3 +34,4 @@ create table account_list(
 
 
 drop table customer
+drop table account_list

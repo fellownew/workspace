@@ -12,7 +12,7 @@ import bank.util.NetworkUtil;
  *
  */
 public class ClientThread implements Runnable {
-	Socket socket = null;
+	private Socket socket;
 
 	public ClientThread(Socket socket) {
 		this.socket = socket;
@@ -20,7 +20,7 @@ public class ClientThread implements Runnable {
 
 	@Override
 	public void run() {
-		BufferedReader receive = null;
+		BufferedReader receive=null;
 		boolean flag = true;
 		try {
 			receive = new BufferedReader(new InputStreamReader(socket.getInputStream()));

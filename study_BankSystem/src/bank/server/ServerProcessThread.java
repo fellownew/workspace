@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.ArrayList;
 
 import bank.server.managerment.AccountManagement;
 import bank.server.managerment.CustomerManagement;
 import bank.server.vo.Account;
+import bank.server.vo.Customer;
 import bank.server.vo.Type;
 
 /**
@@ -33,10 +33,9 @@ public class ServerProcessThread implements Runnable{
 	public void run() {
 
 		String str = null;
-		// TODO Auto-generated method stub
 		try{
 		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		pw = new PrintWriter(socket.getOutputStream());
+		pw = new PrintWriter(socket.getOutputStream(),true);
 		pw.println("1. 회원가입 2.로그인 3. 회원탈퇴");
 		str = br.readLine();
 		if(str.equals("1")){//회원가입
@@ -73,7 +72,7 @@ public class ServerProcessThread implements Runnable{
 	
 	public void registerCustomer() throws IOException{
 		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		pw = new PrintWriter(socket.getOutputStream());
+		pw = new PrintWriter(socket.getOutputStream(),true);
 		pw.println("가입할 ID");
 		String customerId = br.readLine();
 		pw.println("비밀번호");
@@ -97,7 +96,7 @@ public class ServerProcessThread implements Runnable{
 		String adress = br.readLine();
 		pw.println("원하는 통장번호");
 		temp = br.readLine();
-		Account customerAccount = new Account(temp, 0, new Type("일반", (double) 1.0));
+		Account customerAccount = new Account(temp, 1000, new Type("일반", (double) 1.0));
 		int creditRating = 9;
 		cusM.addCustomer(customerId, customerPassword, customerName, customerAccount, creditRating, job, age, sex, phoneNumber, adress);
 	}//registerCustomer end
@@ -105,28 +104,45 @@ public class ServerProcessThread implements Runnable{
 	public boolean login() throws IOException{
 		boolean flag = false;
 		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		pw = new PrintWriter(socket.getOutputStream());
+		pw = new PrintWriter(socket.getOutputStream(),true);
 		pw.println("로그인 ID");
 		String customerId = br.readLine();
 		pw.println("비밀번호");
 		String customerPassword = br.readLine();
-		//TODO 아이디 비밀번호 비교
+		//로그인 확인
+		String confirm = cusM.confirmLogin(customerId, customerPassword);
+		if(confirm==null){
+			flag = true;
+		}else{
+			pw.println(confirm);
+		}
 		return flag;
 	}
 	public void withdrawCustomer() throws IOException{
 		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		pw = new PrintWriter(socket.getOutputStream());
+		pw = new PrintWriter(socket.getOutputStream(),true);
 		pw.println("삭제할 ID");
 		String customerId = br.readLine();
 		pw.println("비밀번호");
 		String customerPassword = br.readLine();
 		//TODO 아이디 비밀번호 비교
-		cusM.removeCustomer(customerId);//삭제
+		String confirm = cusM.confirmLogin(customerId, customerPassword);
+		if(confirm==null){
+			pw.println("정말 삭제하시겠습니까? y/n");
+			String temp = br.readLine();
+			if(temp.equals("y")){
+				cusM.removeCustomer(customerId);//삭제
+			}else{
+				pw.println("삭제되지 않았습니다.");
+			}
+		}else{
+			pw.println(confirm);
+		}
 	}
-	
+
 	public void accountManage() throws IOException{
 		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		pw = new PrintWriter(socket.getOutputStream());
+		pw = new PrintWriter(socket.getOutputStream(),true);
 		pw.println("1.조회 2.신규 3.해지");
 		String str = br.readLine();
 		if(str.equals("1")){//조회
